@@ -1,4 +1,5 @@
 import React from "react";
+import CartWidget from "../CartWidget/CartWidget";
 
 function Navbar() {
   return (
@@ -22,7 +23,7 @@ function Navbar() {
           className="collapse navbar-collapse justify-content-end"
           id="navbarNav"
         >
-          <ul className="navbar-nav ">
+          <ul className="navbar-nav">
             <li className="nav-item">
               <a
                 className="nav-link active"
@@ -41,6 +42,9 @@ function Navbar() {
               <a className="nav-link" href="#section1">
                 Pricing
               </a>
+            </li>
+            <li className="nav-item d-flex align-items-center">
+              <CartWidget />
             </li>
           </ul>
         </div>
