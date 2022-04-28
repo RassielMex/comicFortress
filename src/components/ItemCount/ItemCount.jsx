@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import plusIcon from "../../../node_modules/bootstrap-icons/icons/plus.svg";
 import dashIcon from "../../../node_modules/bootstrap-icons/icons/dash.svg";
 
-const ItemCount = ({ stock, initail }) => {
+const ItemCount = ({ stock, initail, onAdd }) => {
   const [count, setCount] = useState(initail || 10);
 
   const onIncrement = () => {
@@ -15,6 +15,10 @@ const ItemCount = ({ stock, initail }) => {
     if (count > 0) {
       setCount(count - 1);
     }
+  };
+
+  const addToCart = () => {
+    onAdd(count);
   };
 
   return (
@@ -43,7 +47,11 @@ const ItemCount = ({ stock, initail }) => {
             <img src={plusIcon} alt="plusicon" />
           </button>
         </div>
-        <button type="button" className="btn btn-outline-secondary my-1">
+        <button
+          type="button"
+          className="btn btn-outline-secondary my-1"
+          onClick={addToCart}
+        >
           Agregar al carrito
         </button>
       </div>
