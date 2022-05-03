@@ -22,8 +22,8 @@ const ItemCount = ({ stock, initail, onAdd }) => {
   };
 
   return (
-    <div className="card " style={{ width: "18rem" }}>
-      <div className="card-body d-flex justify-content-center flex-column">
+    <div className="w-100">
+      <div className=" d-flex justify-content-center flex-column">
         <div
           className="btn-group my-1"
           role="group"
