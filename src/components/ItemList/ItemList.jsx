@@ -18,7 +18,7 @@ const ItemList = ({ items }) => {
         })
       ) : (
         <div className="d-flex  justify-content-center">
-          <div className="spinner-border text-secondary m-1" role="status">
+          <div className="spinner-border text-warning m-1" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>

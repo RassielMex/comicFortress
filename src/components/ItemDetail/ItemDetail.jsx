@@ -3,7 +3,7 @@ import React from "react";
 const ItemDetail = ({ item }) => {
   const { title, price, pictureUrl, description, author } = item;
   return (
-    <div class="card w-75 h-75 align-items-center m-2">
+    <div className="card w-75 h-75 align-items-center m-2">
       <img src={pictureUrl} className="card-img-top m1 w-50 h-25" alt="..." />
       <div className="card-body">
         <h3 className="card-title">{title}</h3>
