@@ -1,13 +1,14 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#section1">
+        <Link to={"/"} className="navbar-brand">
           Comic Fortress
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -25,23 +26,19 @@ function Navbar() {
         >
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="#section1"
-              >
-                Home
-              </a>
+              <NavLink className="nav-link" to={"/category/new"}>
+                New
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#section1">
-                Features
-              </a>
+              <NavLink className="nav-link" to={"/category/bestseller"}>
+                Bestseller
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#section1">
-                Pricing
-              </a>
+              <NavLink className="nav-link" to={"/category/outlet"}>
+                Outlet
+              </NavLink>
             </li>
             <li className="nav-item d-flex align-items-center">
               <CartWidget />

@@ -1,46 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
-
-// const onAdd = (count) => {
-//   console.log("Agregado al carrito: " + count + " items");
-// };
+import data from "../../util/data";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    let data = [
-      {
-        title: "Batman Hush",
-        price: "$400",
-        pictureUrl:
-          "https://images-na.ssl-images-amazon.com/images/I/A1Gb8vuZiCL.jpg",
-      },
-      {
-        title: "all star batman",
-        price: "$320",
-        pictureUrl:
-          "https://images-na.ssl-images-amazon.com/images/I/71RgvfEIzlL.jpg",
-      },
-      {
-        title: "Batman Year One",
-        price: "$580",
-        pictureUrl:
-          "https://images-na.ssl-images-amazon.com/images/I/71NaQHQCo0L.jpg",
-      },
-      {
-        title: "Doomsday clock",
-        price: "450",
-        pictureUrl:
-          "https://images-na.ssl-images-amazon.com/images/I/81u32i8ixaL.jpg",
-      },
-      {
-        title: "Justice League vs Suicide Squad",
-        price: "350",
-        pictureUrl:
-          "https://images-na.ssl-images-amazon.com/images/I/91mBojLIHEL.jpg",
-      },
-    ];
     const getData = new Promise((res, rej) => {
       setTimeout(() => {
         res(data);
@@ -49,13 +16,19 @@ const ItemListContainer = ({ greeting }) => {
 
     getData
       .then((res) => {
-        setItems(res);
+        if (!id) {
+          setItems(res);
+        } else {
+          console.log(id);
+          const itemsByCategory = res.filter((item) => item.category === id);
+          setItems(itemsByCategory);
+        }
       })
       .catch((e) => {
         console.log(e);
       });
     //return () => {};
-  }, []);
+  }, [id]);
 
   return (
     <div className="container">
