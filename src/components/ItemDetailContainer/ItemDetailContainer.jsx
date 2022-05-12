@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
   }, []);
 
   return (
-    <div className="container d-flex justify-content-center ">
+    <div className="container d-flex justify-content-center">
       {Object.keys(item).length > 0 ? (
         <ItemDetail item={item} />
       ) : (

@@ -3,7 +3,7 @@ import plusIcon from "../../../node_modules/bootstrap-icons/icons/plus.svg";
 import dashIcon from "../../../node_modules/bootstrap-icons/icons/dash.svg";
 
 const ItemCount = ({ stock, initail, onAdd }) => {
-  const [count, setCount] = useState(initail || 10);
+  const [count, setCount] = useState(initail || 0);
 
   const onIncrement = () => {
     if (count < stock) {
@@ -31,7 +31,7 @@ const ItemCount = ({ stock, initail, onAdd }) => {
         >
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-warning"
             onClick={onDecrement}
           >
             <img src={dashIcon} alt="plusicon" />
@@ -41,7 +41,7 @@ const ItemCount = ({ stock, initail, onAdd }) => {
           </div>
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-warning"
             onClick={onIncrement}
           >
             <img src={plusIcon} alt="plusicon" />

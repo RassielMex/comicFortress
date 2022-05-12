@@ -1,15 +1,18 @@
 import React from "react";
 import "./CartWidget.css";
 import cartIcon from "bootstrap-icons/icons/cart.svg";
+import { Link } from "react-router-dom";
 
 const CartWidget = () => {
   let counter = 0;
 
   return (
-    <div className="d-flex align-items-center">
-      <img src={cartIcon} alt="cartIcon" />
-      <span> {counter && counter} </span>
-    </div>
+    <Link to={"/cart"} style={{ textDecoration: "none", color: "black" }}>
+      <div className="d-flex align-items-center">
+        <img src={cartIcon} alt="cartIcon" />
+        <span> {counter && counter} </span>
+      </div>
+    </Link>
   );
 };
 
