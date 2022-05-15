@@ -12,7 +12,7 @@ const ItemCount = ({ stock, initail, onAdd }) => {
   };
 
   const onDecrement = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   };
