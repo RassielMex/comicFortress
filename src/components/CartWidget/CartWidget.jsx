@@ -1,17 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./CartWidget.css";
 import cartIcon from "bootstrap-icons/icons/cart.svg";
 import { Link } from "react-router-dom";
-import { CartProvider } from "../../context/CartContext";
 
-const CartWidget = () => {
-  const { getTotalItems } = useContext(CartProvider);
-
+const CartWidget = ({ count }) => {
   return (
     <Link to={"/cart"} style={{ textDecoration: "none", color: "black" }}>
       <div className="d-flex align-items-center">
         <img src={cartIcon} alt="cartIcon" />
-        <span> {getTotalItems()} </span>
+        <span> {count} </span>
       </div>
     </Link>
   );

@@ -2,7 +2,7 @@ let data = [
   {
     id: "1",
     title: "Batman Hush",
-    price: "$400",
+    price: 400,
     pictureUrl:
       "https://images-na.ssl-images-amazon.com/images/I/A1Gb8vuZiCL.jpg",
     description:
@@ -14,7 +14,7 @@ let data = [
   {
     id: "2",
     title: "all star Superman",
-    price: "$320",
+    price: 320,
     pictureUrl:
       "https://images-na.ssl-images-amazon.com/images/I/71RgvfEIzlL.jpg",
     description:
@@ -26,7 +26,7 @@ let data = [
   {
     id: "3",
     title: "Batman Year One",
-    price: "$580",
+    price: 580,
     pictureUrl:
       "https://images-na.ssl-images-amazon.com/images/I/71NaQHQCo0L.jpg",
     description:
@@ -38,7 +38,7 @@ let data = [
   {
     id: "4",
     title: "Doomsday clock",
-    price: "$450",
+    price: 450,
     pictureUrl:
       "https://images-na.ssl-images-amazon.com/images/I/81u32i8ixaL.jpg",
     description:
@@ -50,7 +50,7 @@ let data = [
   {
     id: "5",
     title: "Justice League vs Suicide Squad",
-    price: "$350",
+    price: 350,
     pictureUrl:
       "https://images-na.ssl-images-amazon.com/images/I/91mBojLIHEL.jpg",
     description:

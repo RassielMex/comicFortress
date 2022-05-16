@@ -1,8 +1,18 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartProvider } from "../../context/CartContext";
 
 const Cart = () => {
   const { cart, removeToCart } = useContext(CartProvider);
+
+  const totalPrice = () => {
+    const totalByItem = cart.map((item) => {
+      return item.price * item.quantity;
+    });
+    return totalByItem.reduce((a, b) => {
+      return a + b;
+    }, 0);
+  };
 
   const handleRemoveItem = (id) => {
     removeToCart(id);
@@ -21,6 +31,7 @@ const Cart = () => {
               <div className="card-body ">
                 <h5 className="card-text"> {item.title}</h5>
                 <p>Cantidad: {item.quantity}</p>
+                <p>Precio: ${item.price}</p>
               </div>
               <button
                 className="btn btn-outline-danger d-flex justify-content-center align-items-center m-1"
@@ -43,8 +54,14 @@ const Cart = () => {
           );
         })
       ) : (
-        <h1 className="">Tu carrito esta vacio </h1>
+        <div>
+          <h1 className="">Tu carrito esta vacio </h1>
+          <Link to={"/"}>
+            <button className="btn btn-warning"> Ir a comprar</button>
+          </Link>
+        </div>
       )}
+      {totalPrice() > 0 ? <h5>{"Total: $" + totalPrice()}</h5> : null}
     </div>
   );
 };

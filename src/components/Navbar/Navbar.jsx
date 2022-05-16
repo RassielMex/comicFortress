@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { CartProvider } from "../../context/CartContext";
 import CartWidget from "../CartWidget/CartWidget";
 
 function Navbar() {
+  const { getTotalItems } = useContext(CartProvider);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -40,9 +43,11 @@ function Navbar() {
                 Outlet
               </NavLink>
             </li>
-            <li className="nav-item d-flex align-items-center">
-              <CartWidget />
-            </li>
+            {getTotalItems() > 0 ? (
+              <li className="nav-item d-flex align-items-center">
+                <CartWidget count={getTotalItems()} />
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>

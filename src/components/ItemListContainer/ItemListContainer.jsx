@@ -19,7 +19,7 @@ const ItemListContainer = ({ greeting }) => {
         if (!id) {
           setItems(res);
         } else {
-          console.log(id);
+          //console.log(id);
           const itemsByCategory = res.filter((item) => item.category === id);
           setItems(itemsByCategory);
         }
