@@ -22,7 +22,7 @@ const ItemDetail = ({ item }) => {
         <div className="col-md d-flex align-items-center">
           <div className="card-body">
             <h3 className="card-title">{title}</h3>
-            <h5 className="card-text">{price}</h5>
+            <h5 className="card-text">${price} MXN</h5>
             <p>
               {" "}
               Escrito por: <u>{author}</u>

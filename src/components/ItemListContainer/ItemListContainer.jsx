@@ -1,33 +1,48 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
-import data from "../../util/data";
 import { useParams } from "react-router-dom";
+import { db } from "../../services/FirebaseService";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    const getData = new Promise((res, rej) => {
-      setTimeout(() => {
-        res(data);
-      }, 2000);
-    });
+    const itemsCollection = collection(db, "comics");
 
-    getData
-      .then((res) => {
-        if (!id) {
-          setItems(res);
-        } else {
-          //console.log(id);
-          const itemsByCategory = res.filter((item) => item.category === id);
-          setItems(itemsByCategory);
+    if (!id) {
+      getDocs(itemsCollection)
+        .then((snapshot) => {
+          if (!snapshot.empty) {
+            setItems(
+              snapshot.docs.map((doc) => {
+                return {
+                  id: doc.id,
+                  ...doc.data(),
+                };
+              })
+            );
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      const q = query(itemsCollection, where("category", "==", id));
+      getDocs(q).then((snapshot) => {
+        if (!snapshot.empty) {
+          setItems(
+            snapshot.docs.map((doc) => {
+              return {
+                id: doc.id,
+                ...doc.data(),
+              };
+            })
+          );
         }
-      })
-      .catch((e) => {
-        console.log(e);
       });
-    //return () => {};
+    }
   }, [id]);
 
   return (

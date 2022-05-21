@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import data from "../../util/data";
 import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../services/FirebaseService";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState({});
-  const { id } = useParams();
+  const { itemId } = useParams();
 
   useEffect(() => {
-    const getItem = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 2000);
-    });
-
-    getItem
-      .then((res) => {
-        if (id) {
-          //console.log(id);
-          const itemSelected = res.find((item) => item.id === id);
-          setItem(itemSelected);
+    const itemRef = doc(db, "comics", itemId);
+    getDoc(itemRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setItem({ id: snapshot.id, ...snapshot.data() });
         }
       })
       .catch((e) => {
