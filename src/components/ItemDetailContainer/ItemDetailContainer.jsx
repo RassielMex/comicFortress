@@ -6,10 +6,10 @@ import { db } from "../../services/FirebaseService";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState({});
-  const { itemId } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    const itemRef = doc(db, "comics", itemId);
+    const itemRef = doc(db, "comics", id);
     getDoc(itemRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
@@ -21,7 +21,7 @@ const ItemDetailContainer = () => {
       });
 
     return () => {};
-  }, []);
+  });
 
   return (
     <div className="container d-flex justify-content-center">
