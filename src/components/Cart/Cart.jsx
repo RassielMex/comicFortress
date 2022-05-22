@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartProvider } from "../../context/CartContext";
 import CartForm from "../CartForm/CartForm";
@@ -6,14 +6,6 @@ import CartItem from "../CartItem/CartItem";
 
 const Cart = () => {
   const { cart, removeToCart } = useContext(CartProvider);
-  const [form, setForm] = useState({
-    buyer: {
-      email: "",
-      nombre: "",
-      apellido: "",
-      telefono: "",
-    },
-  });
 
   const totalPrice = () => {
     const totalByItem = cart.map((item) => {
@@ -26,29 +18,6 @@ const Cart = () => {
 
   const handleRemoveItem = (id) => {
     removeToCart(id);
-  };
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    switch (id) {
-      case "name":
-        setForm({ ...form, nombre: { value } });
-
-        break;
-      case "phone":
-        setForm({ ...form, telefono: { value } });
-        break;
-      case "email":
-        setForm({ ...form, email: { value } });
-        break;
-      case "lastName":
-        setForm({ ...form, apellido: { value } });
-        break;
-
-      default:
-        break;
-    }
-    console.log(form);
   };
 
   return (
@@ -75,8 +44,12 @@ const Cart = () => {
           </Link>
         </div>
       )}
-      {totalPrice() > 0 && <h5>{"Total: $" + totalPrice()}</h5>}
-      <CartForm />
+      {totalPrice() > 0 && (
+        <div>
+          <h5>{"Total: $" + totalPrice()}</h5>
+          <CartForm />
+        </div>
+      )}
     </div>
   );
 };
