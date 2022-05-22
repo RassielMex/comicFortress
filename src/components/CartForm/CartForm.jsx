@@ -1,5 +1,5 @@
 import { Modal } from "bootstrap";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, writeBatch, doc } from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../../services/FirebaseService";
 import ModalComponent from "../Modal/ModalComponent";
@@ -29,6 +29,7 @@ const CartForm = ({ total, cart }) => {
     addDoc(ordersCollection, order)
       .then((docRef) => {
         setOrderID(docRef.id);
+        updateStock();
         const modalOrder = new Modal("#modal");
         modalOrder.show();
       })
@@ -37,6 +38,18 @@ const CartForm = ({ total, cart }) => {
       });
 
     e.preventDefault();
+  };
+
+  const updateStock = () => {
+    const batch = writeBatch(db);
+    cart.forEach((cartItem) => {
+      const id = cartItem.id;
+      const newStock = cartItem.stock - cartItem.quantity;
+      const docRef = doc(db, "comics", id);
+      batch.update(docRef, { stock: newStock });
+    });
+
+    batch.commit();
   };
 
   return (
