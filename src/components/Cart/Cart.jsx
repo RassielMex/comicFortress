@@ -47,7 +47,7 @@ const Cart = () => {
       {totalPrice() > 0 && (
         <div>
           <h5>{"Total: $" + totalPrice()}</h5>
-          <CartForm />
+          <CartForm cart={cart} total={totalPrice()} />
         </div>
       )}
     </div>
