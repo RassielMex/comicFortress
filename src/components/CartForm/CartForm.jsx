@@ -17,27 +17,45 @@ const CartForm = ({ total, cart }) => {
   });
 
   const [orderID, setOrderID] = useState("");
+  const [formValidity, setValidity] = useState({
+    email: true,
+    name: true,
+    lastName: true,
+    phone: true,
+  });
 
   const handleChange = (e) => {
     const { value, id } = e.target;
-
+    isFormValid(value, id);
     serOrder({ ...order, buyer: { ...order.buyer, [id]: value } });
   };
 
   const handleSubmit = (e) => {
-    const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, order)
-      .then((docRef) => {
-        setOrderID(docRef.id);
-        updateStock();
-        const modalOrder = new Modal("#modal");
-        modalOrder.show();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    if (isFormValid()) {
+      console.log("Validation truye");
+      const ordersCollection = collection(db, "orders");
+      addDoc(ordersCollection, order)
+        .then((docRef) => {
+          setOrderID(docRef.id);
+          updateStock();
+          const modalOrder = new Modal("#modal");
+          modalOrder.show();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
 
     e.preventDefault();
+  };
+
+  const isFormValid = (value, id) => {
+    if (value !== "") {
+      setValidity({ ...formValidity, [id]: true });
+    } else {
+      setValidity({ ...formValidity, [id]: false });
+    }
+    return Object.keys(formValidity).every(Boolean);
   };
 
   const updateStock = () => {
@@ -61,12 +79,14 @@ const CartForm = ({ total, cart }) => {
           </label>
           <input
             type="email"
-            className="form-control"
+            className={`form-control ${formValidity.email ? "" : "is-invalid"}`}
             id="email"
             aria-describedby="emailHelp"
             value={order.buyer.email}
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Campo requerido.</div>
         </div>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -74,11 +94,13 @@ const CartForm = ({ total, cart }) => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${formValidity.name ? "" : "is-invalid"}`}
             id="name"
             value={order.buyer.name}
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Campo requerido.</div>
         </div>
         <div className="mb-3">
           <label htmlFor="lastName" className="form-label">
@@ -86,11 +108,15 @@ const CartForm = ({ total, cart }) => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${
+              formValidity.lastName ? "" : "is-invalid"
+            }`}
             id="lastName"
             value={order.buyer.lastName}
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Campo requerido.</div>
         </div>
         <div className="mb-3">
           <label htmlFor="phone" className="form-label">
