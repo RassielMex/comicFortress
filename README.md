@@ -13,4 +13,4 @@ Install my-project with npm
 
 ## 🔗 Links
 
-[![Live](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherinempeterson.com/)
+[![Live]](https://katherinempeterson.com/)
