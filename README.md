@@ -1,6 +1,7 @@
 # About
 
-Este proyecto es un Ecommerce hecho con react durante el curso de React en Coderhouse
+Este proyecto es un Ecommerce hecho con react durante el curso de React en Coderhouse.
+El proyecto usa Firebase como backend y hosting
 
 ## Installation
 
