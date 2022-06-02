@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import plusIcon from "../../../node_modules/bootstrap-icons/icons/plus.svg";
-import dashIcon from "../../../node_modules/bootstrap-icons/icons/dash.svg";
 
 const ItemCount = ({ stock, initail, onAdd }) => {
   const [count, setCount] = useState(initail || 0);
@@ -34,7 +32,16 @@ const ItemCount = ({ stock, initail, onAdd }) => {
             className="btn btn-warning"
             onClick={onDecrement}
           >
-            <img src={dashIcon} alt="plusicon" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-dash"
+              viewBox="0 0 16 16"
+            >
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+            </svg>
           </button>
           <div className="d-flex justify-content-center align-items-center w-50">
             {count}
@@ -44,7 +51,16 @@ const ItemCount = ({ stock, initail, onAdd }) => {
             className="btn btn-warning"
             onClick={onIncrement}
           >
-            <img src={plusIcon} alt="plusicon" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-plus"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+            </svg>
           </button>
         </div>
         <button
