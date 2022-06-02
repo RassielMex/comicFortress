@@ -1,6 +1,5 @@
 import React from "react";
 import "./CartWidget.css";
-import cartIcon from "bootstrap-icons/icons/cart.svg";
 import { Link } from "react-router-dom";
 
 const CartWidget = ({ count }) => {
