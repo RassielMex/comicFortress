@@ -13,4 +13,4 @@ Install my-project with npm
 
 ## 🔗 Links
 
-[![Live]](https://katherinempeterson.com/)
+[[Live]](https://katherinempeterson.com/)
