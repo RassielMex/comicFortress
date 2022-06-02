@@ -13,4 +13,4 @@ Install my-project with npm
 
 ## 🔗 Links
 
-[[Live]](https://katherinempeterson.com/)
+[[Ir al Sitio]](https://react-ecommerce-407bc.firebaseapp.com/)
