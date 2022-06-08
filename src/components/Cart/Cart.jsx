@@ -21,7 +21,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container d-flex flex-column align-items-center justify-content-center mt-2">
+    <div className="container-sm d-flex flex-column align-items-center justify-content-center mt-2">
       {cart.length > 0 ? (
         cart.map((item, index) => {
           return (
@@ -29,7 +29,7 @@ const Cart = () => {
               key={index}
               itemId={item.id}
               price={item.price}
-              title={item.price}
+              title={item.title}
               quantity={item.quantity}
               pictureUrl={item.pictureUrl}
               removeItem={handleRemoveItem}
